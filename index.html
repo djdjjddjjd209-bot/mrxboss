@@ -675,5 +675,16 @@ function removeAdmin(i) {
   }
 }
 </script>
+
+<audio id="bgMusic" loop>
+<source src="music_for_video-please-calm-my-mind-125566.mp3" type="audio/mpeg">
+</audio>
+<script>
+document.addEventListener('click', function() {
+  var music = document.getElementById('bgMusic');
+  if (music.paused) music.play();
+}, {once: true});
+</script>
+
 </body>
 </html>
