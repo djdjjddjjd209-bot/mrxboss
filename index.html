@@ -6,387 +6,69 @@
 <title>Mr Xboss</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Tajawal:wght@300;400;700&display=swap');
-
   :root {
-    --bg: #030712;
-    --card: #0d1117;
-    --border: #00ff9d33;
-    --green: #00ff9d;
-    --green2: #00cc7a;
-    --red: #ff3366;
-    --text: #e2e8f0;
-    --muted: #64748b;
+    --bg: #030712; --card: #0d1117; --border: #00ff9d33;
+    --green: #00ff9d; --green2: #00cc7a; --red: #ff3366;
+    --text: #e2e8f0; --muted: #64748b;
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Tajawal', sans-serif;
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-
-  /* Grid background */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: 
-      linear-gradient(rgba(0,255,157,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,255,157,0.03) 1px, transparent 1px);
-    background-size: 40px 40px;
-    pointer-events: none;
-    z-index: 0;
-  }
-
+  body { background: var(--bg); color: var(--text); font-family: 'Tajawal', sans-serif; min-height: 100vh; overflow-x: hidden; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: linear-gradient(rgba(0,255,157,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,255,157,0.03) 1px, transparent 1px); background-size: 40px 40px; pointer-events: none; z-index: 0; }
   .page { position: relative; z-index: 1; }
-
-  /* ===== VISITOR PAGE ===== */
-  #visitorPage {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-  }
-
-  .visitor-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 40px 32px;
-    width: 100%;
-    max-width: 400px;
-    text-align: center;
-    box-shadow: 0 0 40px rgba(0,255,157,0.05);
-    animation: fadeIn 0.6s ease;
-  }
-
-  .logo {
-    font-family: 'Orbitron', monospace;
-    font-size: 28px;
-    font-weight: 900;
-    color: var(--green);
-    text-shadow: 0 0 20px rgba(0,255,157,0.5);
-    letter-spacing: 2px;
-    margin-bottom: 8px;
-  }
-
+  #visitorPage { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+  .visitor-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px 32px; width: 100%; max-width: 400px; text-align: center; box-shadow: 0 0 40px rgba(0,255,157,0.05); animation: fadeIn 0.6s ease; }
+  .logo { font-family: 'Orbitron', monospace; font-size: 28px; font-weight: 900; color: var(--green); text-shadow: 0 0 20px rgba(0,255,157,0.5); letter-spacing: 2px; margin-bottom: 8px; }
   .logo span { color: #fff; }
-
-  .subtitle {
-    color: var(--muted);
-    font-size: 14px;
-    margin-bottom: 32px;
-  }
-
-  .input-group {
-    margin-bottom: 20px;
-    text-align: right;
-  }
-
-  .input-group label {
-    display: block;
-    font-size: 13px;
-    color: var(--muted);
-    margin-bottom: 8px;
-  }
-
-  .input-group input {
-    width: 100%;
-    background: #0a0f1a;
-    border: 1px solid #1e293b;
-    border-radius: 10px;
-    padding: 12px 16px;
-    color: var(--text);
-    font-family: 'Tajawal', sans-serif;
-    font-size: 15px;
-    outline: none;
-    transition: border-color 0.3s;
-    text-align: right;
-  }
-
-  .input-group input:focus {
-    border-color: var(--green);
-    box-shadow: 0 0 0 2px rgba(0,255,157,0.1);
-  }
-
-  .btn {
-    width: 100%;
-    padding: 14px;
-    border: none;
-    border-radius: 10px;
-    font-family: 'Tajawal', sans-serif;
-    font-size: 16px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.3s;
-  }
-
-  .btn-green {
-    background: linear-gradient(135deg, var(--green), var(--green2));
-    color: #000;
-  }
-
-  .btn-green:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0,255,157,0.3);
-  }
-
-  .success-msg {
-    display: none;
-    margin-top: 20px;
-    padding: 16px;
-    background: rgba(0,255,157,0.1);
-    border: 1px solid rgba(0,255,157,0.3);
-    border-radius: 10px;
-    color: var(--green);
-    font-size: 15px;
-  }
-
-  /* ===== ADMIN LOGIN ===== */
-  #adminLoginPage {
-    display: none;
-    min-height: 100vh;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-  }
-
-  /* ===== DASHBOARD ===== */
-  #dashboardPage {
-    display: none;
-    padding: 20px;
-    max-width: 900px;
-    margin: 0 auto;
-  }
-
-  .dash-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 24px;
-    padding: 20px 24px;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-
-  .dash-logo {
-    font-family: 'Orbitron', monospace;
-    font-size: 20px;
-    font-weight: 900;
-    color: var(--green);
-    text-shadow: 0 0 15px rgba(0,255,157,0.4);
-  }
-
+  .subtitle { color: var(--muted); font-size: 14px; margin-bottom: 32px; }
+  .input-group { margin-bottom: 20px; text-align: right; }
+  .input-group label { display: block; font-size: 13px; color: var(--muted); margin-bottom: 8px; }
+  .input-group input { width: 100%; background: #0a0f1a; border: 1px solid #1e293b; border-radius: 10px; padding: 12px 16px; color: var(--text); font-family: 'Tajawal', sans-serif; font-size: 15px; outline: none; transition: border-color 0.3s; text-align: right; }
+  .input-group input:focus { border-color: var(--green); box-shadow: 0 0 0 2px rgba(0,255,157,0.1); }
+  .btn { width: 100%; padding: 14px; border: none; border-radius: 10px; font-family: 'Tajawal', sans-serif; font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.3s; }
+  .btn-green { background: linear-gradient(135deg, var(--green), var(--green2)); color: #000; }
+  .btn-green:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,255,157,0.3); }
+  .success-msg { display: none; margin-top: 20px; padding: 16px; background: rgba(0,255,157,0.1); border: 1px solid rgba(0,255,157,0.3); border-radius: 10px; color: var(--green); font-size: 15px; }
+  #adminLoginPage { display: none; min-height: 100vh; align-items: center; justify-content: center; padding: 20px; }
+  #dashboardPage { display: none; padding: 20px; max-width: 900px; margin: 0 auto; }
+  .dash-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding: 20px 24px; background: var(--card); border: 1px solid var(--border); border-radius: 16px; flex-wrap: wrap; gap: 12px; }
+  .dash-logo { font-family: 'Orbitron', monospace; font-size: 20px; font-weight: 900; color: var(--green); text-shadow: 0 0 15px rgba(0,255,157,0.4); }
   .dash-actions { display: flex; gap: 10px; flex-wrap: wrap; }
-
-  .btn-sm {
-    padding: 8px 16px;
-    border: none;
-    border-radius: 8px;
-    font-family: 'Tajawal', sans-serif;
-    font-size: 13px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-
-  .btn-outline {
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--green);
-  }
-
+  .btn-sm { padding: 8px 16px; border: none; border-radius: 8px; font-family: 'Tajawal', sans-serif; font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+  .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--green); }
   .btn-outline:hover { background: rgba(0,255,157,0.1); }
-
-  .btn-danger {
-    background: rgba(255,51,102,0.15);
-    border: 1px solid rgba(255,51,102,0.3);
-    color: var(--red);
-  }
-
+  .btn-danger { background: rgba(255,51,102,0.15); border: 1px solid rgba(255,51,102,0.3); color: var(--red); }
   .btn-danger:hover { background: rgba(255,51,102,0.25); }
-
-  .stats-row {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 12px;
-    margin-bottom: 20px;
-  }
-
-  .stat-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 16px;
-    text-align: center;
-  }
-
-  .stat-num {
-    font-family: 'Orbitron', monospace;
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--green);
-  }
-
+  .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 20px; }
+  .stat-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; text-align: center; }
+  .stat-num { font-family: 'Orbitron', monospace; font-size: 28px; font-weight: 700; color: var(--green); }
   .stat-label { font-size: 12px; color: var(--muted); margin-top: 4px; }
-
   .visitors-list { display: flex; flex-direction: column; gap: 12px; }
-
-  .visitor-item {
-    background: var(--card);
-    border: 1px solid #1e293b;
-    border-radius: 12px;
-    padding: 16px 20px;
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    gap: 16px;
-    align-items: center;
-    animation: slideIn 0.4s ease;
-    transition: border-color 0.2s;
-  }
-
+  .visitor-item { background: var(--card); border: 1px solid #1e293b; border-radius: 12px; padding: 16px 20px; display: grid; grid-template-columns: auto 1fr auto; gap: 16px; align-items: center; animation: slideIn 0.4s ease; transition: border-color 0.2s; }
   .visitor-item:hover { border-color: var(--border); }
-
-  .visitor-num {
-    font-family: 'Orbitron', monospace;
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--green);
-    opacity: 0.5;
-    min-width: 36px;
-    text-align: center;
-  }
-
+  .visitor-num { font-family: 'Orbitron', monospace; font-size: 18px; font-weight: 700; color: var(--green); opacity: 0.5; min-width: 36px; text-align: center; }
   .visitor-info { display: flex; flex-direction: column; gap: 6px; }
-
-  .visitor-name {
-    font-size: 16px;
-    font-weight: 700;
-    color: #fff;
-  }
-
-  .visitor-meta {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-
-  .meta-tag {
-    font-size: 12px;
-    color: var(--muted);
-    display: flex;
-    align-items: center;
-    gap: 4px;
-  }
-
-  .visitor-time {
-    font-size: 11px;
-    color: var(--muted);
-    text-align: left;
-    white-space: nowrap;
-  }
-
-  .empty-state {
-    text-align: center;
-    padding: 60px 20px;
-    color: var(--muted);
-  }
-
+  .visitor-name { font-size: 16px; font-weight: 700; color: #fff; }
+  .visitor-meta { display: flex; gap: 12px; flex-wrap: wrap; }
+  .meta-tag { font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 4px; }
+  .visitor-time { font-size: 11px; color: var(--muted); text-align: left; white-space: nowrap; }
+  .empty-state { text-align: center; padding: 60px 20px; color: var(--muted); }
   .empty-state .icon { font-size: 48px; margin-bottom: 16px; opacity: 0.5; }
-
-  /* Admin toggle link */
-  .admin-link {
-    margin-top: 24px;
-    font-size: 12px;
-    color: var(--muted);
-    cursor: pointer;
-    text-decoration: underline;
-  }
-
+  .admin-link { margin-top: 24px; font-size: 12px; color: var(--muted); cursor: pointer; text-decoration: underline; }
   .admin-link:hover { color: var(--green); }
-
-  /* Manage Admins */
-  #adminsSection {
-    display: none;
-    margin-top: 20px;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 20px;
-  }
-
-  .section-title {
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--green);
-    margin-bottom: 16px;
-    font-family: 'Orbitron', monospace;
-  }
-
-  .admin-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
-    border-bottom: 1px solid #1e293b;
-    font-size: 14px;
-  }
-
-  .add-admin-row {
-    display: flex;
-    gap: 10px;
-    margin-top: 16px;
-  }
-
-  .add-admin-row input {
-    flex: 1;
-    background: #0a0f1a;
-    border: 1px solid #1e293b;
-    border-radius: 8px;
-    padding: 10px 14px;
-    color: var(--text);
-    font-family: 'Tajawal', sans-serif;
-    font-size: 14px;
-    outline: none;
-  }
-
+  #adminsSection { display: none; margin-top: 20px; background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 20px; }
+  .section-title { font-size: 14px; font-weight: 700; color: var(--green); margin-bottom: 16px; font-family: 'Orbitron', monospace; }
+  .admin-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #1e293b; font-size: 14px; }
+  .add-admin-row { display: flex; gap: 10px; margin-top: 16px; }
+  .add-admin-row input { flex: 1; background: #0a0f1a; border: 1px solid #1e293b; border-radius: 8px; padding: 10px 14px; color: var(--text); font-family: 'Tajawal', sans-serif; font-size: 14px; outline: none; }
   .add-admin-row input:focus { border-color: var(--green); }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes slideIn {
-    from { opacity: 0; transform: translateX(-10px); }
-    to { opacity: 1; transform: translateX(0); }
-  }
-
-  .pulse {
-    display: inline-block;
-    width: 8px; height: 8px;
-    background: var(--green);
-    border-radius: 50%;
-    animation: pulse 1.5s infinite;
-    margin-left: 6px;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(1.3); }
-  }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes slideIn { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: translateX(0); } }
+  .pulse { display: inline-block; width: 8px; height: 8px; background: var(--green); border-radius: 50%; animation: pulse 1.5s infinite; margin-left: 6px; }
+  @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.3); } }
 </style>
 </head>
 <body>
 
-<!-- ===== VISITOR PAGE ===== -->
 <div id="visitorPage" class="page">
   <div class="visitor-card">
     <div class="logo">Mr <span>X</span>boss</div>
@@ -401,8 +83,7 @@
   </div>
 </div>
 
-<!-- ===== ADMIN LOGIN ===== -->
-<div id="adminLoginPage" class="page" style="display:none; min-height:100vh; display:none; align-items:center; justify-content:center; padding:20px;">
+<div id="adminLoginPage" class="page" style="display:none;">
   <div class="visitor-card">
     <div class="logo">🔐 <span>Admin</span></div>
     <div class="subtitle">أدخل كلمة السر</div>
@@ -416,7 +97,6 @@
   </div>
 </div>
 
-<!-- ===== DASHBOARD ===== -->
 <div id="dashboardPage" class="page">
   <div class="dash-header">
     <div>
@@ -429,25 +109,12 @@
       <button class="btn-sm btn-outline" onclick="logout()">خروج</button>
     </div>
   </div>
-
   <div class="stats-row">
-    <div class="stat-card">
-      <div class="stat-num" id="totalCount">0</div>
-      <div class="stat-label">إجمالي الزوار</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-num" id="todayCount">0</div>
-      <div class="stat-label">زوار اليوم</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-num" id="countriesCount">0</div>
-      <div class="stat-label">دول مختلفة</div>
-    </div>
+    <div class="stat-card"><div class="stat-num" id="totalCount">0</div><div class="stat-label">إجمالي الزوار</div></div>
+    <div class="stat-card"><div class="stat-num" id="todayCount">0</div><div class="stat-label">زوار اليوم</div></div>
+    <div class="stat-card"><div class="stat-num" id="countriesCount">0</div><div class="stat-label">دول مختلفة</div></div>
   </div>
-
   <div class="visitors-list" id="visitorsList"></div>
-
-  <!-- Admins Section -->
   <div id="adminsSection">
     <div class="section-title">👥 إدارة الأدمنز</div>
     <div id="adminsList"></div>
@@ -458,117 +125,76 @@
   </div>
 </div>
 
-<script>
-// ===== CONFIG =====
-const MASTER_PASS = "xboss2024"; // كلمة سر الأدمن الرئيسي - غيّرها!
+<!-- Firebase -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, orderBy, query } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
 
-// ===== STORAGE =====
-function getVisitors() {
-  try { return JSON.parse(localStorage.getItem('mrxboss_visitors') || '[]'); } 
-  catch { return []; }
-}
+const firebaseConfig = {
+  apiKey: "AIzaSyB89x1mOnYMpYaz3LJFglnmE5O9XsN5ObY",
+  authDomain: "mrxboss-fb4a3.firebaseapp.com",
+  projectId: "mrxboss-fb4a3",
+  storageBucket: "mrxboss-fb4a3.firebasestorage.app",
+  messagingSenderId: "268917374471",
+  appId: "1:268917374471:web:6c8cc39328a3a7536e34a2",
+  measurementId: "G-CB79FQ5ZVZ"
+};
 
-function saveVisitors(v) {
-  localStorage.setItem('mrxboss_visitors', JSON.stringify(v));
-}
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-function getAdmins() {
-  try { return JSON.parse(localStorage.getItem('mrxboss_admins') || '[]'); }
-  catch { return []; }
-}
+const MASTER_PASS = "xboss2024";
 
-function saveAdmins(a) {
-  localStorage.setItem('mrxboss_admins', JSON.stringify(a));
-}
-
-// ===== DEVICE INFO =====
 function getDeviceInfo() {
   const ua = navigator.userAgent;
   let device = "💻 كمبيوتر";
   if (/iPhone/i.test(ua)) device = "📱 iPhone";
   else if (/iPad/i.test(ua)) device = "📱 iPad";
-  else if (/Android/i.test(ua)) {
-    if (/Mobile/i.test(ua)) device = "📱 Android";
-    else device = "📱 تابلت Android";
-  }
-
+  else if (/Android/i.test(ua)) { if (/Mobile/i.test(ua)) device = "📱 Android"; else device = "📱 تابلت Android"; }
   let browser = "متصفح";
   if (/Chrome/i.test(ua) && !/Edge/i.test(ua)) browser = "Chrome";
   else if (/Firefox/i.test(ua)) browser = "Firefox";
   else if (/Safari/i.test(ua) && !/Chrome/i.test(ua)) browser = "Safari";
   else if (/Edge/i.test(ua)) browser = "Edge";
-  else if (/Opera|OPR/i.test(ua)) browser = "Opera";
-
   return { device, browser };
 }
 
-// ===== GET COUNTRY =====
 async function getCountry() {
-  try {
-    const r = await fetch('https://ipapi.co/json/');
-    const d = await r.json();
-    return d.country_name || "غير معروف";
-  } catch {
-    try {
-      const r2 = await fetch('https://api.country.is/');
-      const d2 = await r2.json();
-      return d2.country || "غير معروف";
-    } catch {
-      return "غير معروف";
-    }
-  }
+  try { const r = await fetch('https://ipapi.co/json/'); const d = await r.json(); return d.country_name || "غير معروف"; }
+  catch { return "غير معروف"; }
 }
 
-// ===== SUBMIT VISITOR =====
-async function submitVisitor() {
+window.submitVisitor = async function() {
   const name = document.getElementById('visitorName').value.trim();
-  if (!name) {
-    document.getElementById('visitorName').focus();
-    document.getElementById('visitorName').style.borderColor = 'var(--red)';
-    return;
-  }
-
+  if (!name) { document.getElementById('visitorName').style.borderColor = 'var(--red)'; return; }
   const btn = document.querySelector('#visitorPage .btn-green');
-  btn.textContent = "جاري التسجيل...";
-  btn.disabled = true;
-
+  btn.textContent = "جاري التسجيل..."; btn.disabled = true;
   const { device, browser } = getDeviceInfo();
   const country = await getCountry();
   const now = new Date();
-
-  const visitor = {
-    id: Date.now(),
-    name,
-    device,
-    browser,
-    country,
+  await addDoc(collection(db, "visitors"), {
+    name, device, browser, country,
     time: now.toLocaleString('ar-SA'),
-    date: now.toDateString()
-  };
-
-  const visitors = getVisitors();
-  visitors.unshift(visitor);
-  saveVisitors(visitors);
-
+    date: now.toDateString(),
+    timestamp: now.getTime()
+  });
   document.getElementById('successMsg').style.display = 'block';
   btn.textContent = "✓ تم";
 }
 
-// ===== ADMIN =====
-function showAdminLogin() {
+window.showAdminLogin = function() {
   document.getElementById('visitorPage').style.display = 'none';
   document.getElementById('adminLoginPage').style.display = 'flex';
 }
 
-function showVisitorPage() {
+window.showVisitorPage = function() {
   document.getElementById('adminLoginPage').style.display = 'none';
   document.getElementById('visitorPage').style.display = 'flex';
 }
 
-function checkAdmin() {
+window.checkAdmin = function() {
   const pass = document.getElementById('adminPass').value;
-  const admins = getAdmins();
-  
+  const admins = JSON.parse(localStorage.getItem('mrxboss_admins') || '[]');
   if (pass === MASTER_PASS || admins.includes(pass)) {
     document.getElementById('adminLoginPage').style.display = 'none';
     document.getElementById('dashboardPage').style.display = 'block';
@@ -579,33 +205,27 @@ function checkAdmin() {
   }
 }
 
-function logout() {
+window.logout = function() {
   document.getElementById('dashboardPage').style.display = 'none';
   document.getElementById('visitorPage').style.display = 'flex';
 }
 
-// ===== DASHBOARD =====
-function loadDashboard() {
-  const visitors = getVisitors();
+window.loadDashboard = async function() {
+  const q = query(collection(db, "visitors"), orderBy("timestamp", "desc"));
+  const snap = await getDocs(q);
+  const visitors = [];
+  snap.forEach(d => visitors.push({id: d.id, ...d.data()}));
   const today = new Date().toDateString();
-  const todayVisitors = visitors.filter(v => v.date === today);
+  const todayV = visitors.filter(v => v.date === today);
   const countries = [...new Set(visitors.map(v => v.country))];
-
   document.getElementById('totalCount').textContent = visitors.length;
-  document.getElementById('todayCount').textContent = todayVisitors.length;
+  document.getElementById('todayCount').textContent = todayV.length;
   document.getElementById('countriesCount').textContent = countries.length;
-
   const list = document.getElementById('visitorsList');
   if (visitors.length === 0) {
-    list.innerHTML = `
-      <div class="empty-state">
-        <div class="icon">👁</div>
-        <div>ما في زوار بعد</div>
-        <div style="font-size:12px; margin-top:8px;">شارك رابطك وانتظر!</div>
-      </div>`;
+    list.innerHTML = `<div class="empty-state"><div class="icon">👁</div><div>ما في زوار بعد</div><div style="font-size:12px;margin-top:8px;">شارك رابطك وانتظر!</div></div>`;
     return;
   }
-
   list.innerHTML = visitors.map((v, i) => `
     <div class="visitor-item">
       <div class="visitor-num">#${visitors.length - i}</div>
@@ -618,59 +238,45 @@ function loadDashboard() {
         </div>
       </div>
       <div class="visitor-time">${v.time}</div>
-    </div>
-  `).join('');
+    </div>`).join('');
 }
 
-function clearAll() {
+window.clearAll = async function() {
   if (confirm('مسح كل بيانات الزوار؟')) {
-    saveVisitors([]);
+    const snap = await getDocs(collection(db, "visitors"));
+    for (const d of snap.docs) await deleteDoc(doc(db, "visitors", d.id));
     loadDashboard();
   }
 }
 
-// ===== ADMINS MANAGEMENT =====
-function toggleAdmins() {
+window.toggleAdmins = function() {
   const sec = document.getElementById('adminsSection');
-  if (sec.style.display === 'block') {
-    sec.style.display = 'none';
-  } else {
-    sec.style.display = 'block';
-    loadAdminsList();
-  }
+  sec.style.display = sec.style.display === 'block' ? 'none' : 'block';
+  if (sec.style.display === 'block') loadAdminsList();
 }
 
-function loadAdminsList() {
-  const admins = getAdmins();
+window.loadAdminsList = function() {
+  const admins = JSON.parse(localStorage.getItem('mrxboss_admins') || '[]');
   const list = document.getElementById('adminsList');
-  if (admins.length === 0) {
-    list.innerHTML = '<div style="color:var(--muted); font-size:13px; padding:8px 0;">ما في أدمنز إضافيين</div>';
-    return;
-  }
-  list.innerHTML = admins.map((a, i) => `
-    <div class="admin-item">
-      <span>🔑 أدمن ${i + 1}: <span style="color:var(--muted)">${'*'.repeat(a.length)}</span></span>
-      <button class="btn-sm btn-danger" onclick="removeAdmin(${i})">حذف</button>
-    </div>
-  `).join('');
+  if (admins.length === 0) { list.innerHTML = '<div style="color:var(--muted);font-size:13px;padding:8px 0;">ما في أدمنز إضافيين</div>'; return; }
+  list.innerHTML = admins.map((a, i) => `<div class="admin-item"><span>🔑 أدمن ${i+1}: <span style="color:var(--muted)">${'*'.repeat(a.length)}</span></span><button class="btn-sm btn-danger" onclick="removeAdmin(${i})">حذف</button></div>`).join('');
 }
 
-function addAdmin() {
+window.addAdmin = function() {
   const pass = document.getElementById('newAdminPass').value.trim();
   if (!pass || pass.length < 4) { alert('كلمة السر لازم تكون 4 أحرف على الأقل'); return; }
-  if (pass === MASTER_PASS) { alert('هذي كلمة سر الماستر!'); return; }
-  const admins = getAdmins();
+  const admins = JSON.parse(localStorage.getItem('mrxboss_admins') || '[]');
   admins.push(pass);
-  saveAdmins(admins);
+  localStorage.setItem('mrxboss_admins', JSON.stringify(admins));
   document.getElementById('newAdminPass').value = '';
   loadAdminsList();
 }
 
-function removeAdmin(i) {
+window.removeAdmin = function(i) {
   if (confirm('تحذف هذا الأدمن؟')) {
-    const admins = getAdmins();
+    const admins = JSON.parse(localStorage.getItem('mrxboss_admins') || '[]');
     admins.splice(i, 1);
-    saveAdmins(admins);
+    localStorage.setItem('mrxboss_admins', JSON.stringify(admins));
     loadAdminsList();
   }
 }
